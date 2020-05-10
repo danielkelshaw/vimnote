@@ -1,0 +1,27 @@
+#!/usr/bin/env bash
+set -e
+
+bin_dir="$(dirname "$0")"
+note_dir="$(dirname "$bin_dir")/notes"
+
+# Ensure that the notes directory exists.
+mkdir -p "$note_dir"
+
+note_file="$note_dir/$(date "+%d-%m-%Y").md"
+header="# [$(date "+%H:%M")] $@"
+
+# Ensure that file exists.
+if [ -f "$note_file" ]; then
+    # Insert a newline to separate from previous note.
+    echo >> "$note_file"
+else
+    touch "$note_file"
+fi
+
+# Append header and newline.
+echo "$header" >> "$note_file"
+echo >> "$note_file"
+
+# Open file in vim, ready for editing.
+vim + +startinsert -c 'execute "normal zR"' "$note_file"
+
