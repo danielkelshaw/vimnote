@@ -12,7 +12,7 @@ cd vimnote
 Add the `src` directory to your path:
 
 ```bash
-echo "export PATH=\"\$PATH"$(pwd)/src/`"" >> ~/.bash_profile
+echo "export PATH=\$PATH:$(pwd)/src" >> ~/.zshrc
 ```
 
 ## **Making Notes:**
